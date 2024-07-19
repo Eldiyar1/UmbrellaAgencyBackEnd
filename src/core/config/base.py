@@ -23,6 +23,7 @@ THIRTY_PARTY_APPS = [
     'rest_framework',
     'debug_toolbar',
     'corsheaders',
+    'drf_yasg'
 ]
 
 INSTALLED_APPS = [

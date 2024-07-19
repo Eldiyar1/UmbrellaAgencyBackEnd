@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from portfolio import models as port_mod
+
+
+@admin.register(port_mod.Portfolio)
+class PortfolioAdmin(admin.ModelAdmin):
+    list_display = ('title', 'price', 'created_at')
