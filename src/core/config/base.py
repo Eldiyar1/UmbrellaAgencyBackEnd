@@ -11,8 +11,9 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 MAIN_PARTY_APPS = [
     'portfolio',
+    'reviews',
     'ServiceDesk',
-    'service'
+    'service',
 ]
 
 THEME_PARTY_APPS = [

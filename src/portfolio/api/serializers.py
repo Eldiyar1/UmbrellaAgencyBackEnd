@@ -7,6 +7,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(format='%m-%d-%Y')
 
     class Meta:
+
         model = port_mod.Portfolio
         fields = (
             'id',
