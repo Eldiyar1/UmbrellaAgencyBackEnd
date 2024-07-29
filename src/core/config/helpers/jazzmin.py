@@ -12,6 +12,8 @@ JAZZMIN_SETTINGS = {
         {"app": "Umbrella Agency"},
         {"model": "management.User"},
     ],
+    "hide_models": ['service.Section', 'service.Process', 'service.Portfolio', 'service.TeamMember',
+                    'service.Tab'],
     "default_icon_parents": "fas fa-circle",
     "default_icon_children": "fas fa-dot-circle",
     "show_sidebar": True,

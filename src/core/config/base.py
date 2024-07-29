@@ -14,6 +14,7 @@ MAIN_PARTY_APPS = [
     'reviews',
     'ServiceDesk',
     'service',
+    'about'
 ]
 
 THEME_PARTY_APPS = [
