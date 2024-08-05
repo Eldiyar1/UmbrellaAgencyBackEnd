@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from ServiceDesk.models import ApplicationForm, Service
+from ServiceDesk.models import ApplicationForm
+from service.models import Service
 
 class ApplicationFormSerializer(serializers.ModelSerializer):
     created_at = serializers.DateTimeField(format='%d-%m-%y Время: %H', read_only=True)
@@ -21,7 +22,12 @@ class ApplicationFormSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         service_titles = validated_data.pop('service_titles', [])
-        application_form = ApplicationForm.objects.create(**validated_data)
         services = Service.objects.filter(title__in=service_titles)
+
+        if not services:
+            raise serializers.ValidationError("Некоторые указанные услуги не существуют.")
+
+        application_form = ApplicationForm.objects.create(**validated_data)
         application_form.service.set(services)
+
         return application_form

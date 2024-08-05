@@ -21,8 +21,9 @@ class FounderAdmin(admin.ModelAdmin):
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at')
+    list_display = ('title', 'created_at', 'url')
     search_fields = ('title', 'description')
     list_filter = ('created_at',)
 
 
+1735

@@ -3,6 +3,7 @@ import random
 import requests
 import datetime
 from rest_framework import generics
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ApplicationFormSerializer
@@ -16,10 +17,20 @@ class ApplicationFormCreateAPIView(generics.CreateAPIView):
 
     @limit_rate(num_requests=3, period=3600)
     def create(self, request, *args, **kwargs):
+        import re
+
         serializer = self.serializer_class(data=request.data)
         try:
             if serializer.is_valid(raise_exception=True):
                 self.perform_create(serializer)
+
+                PHONE_REGEX = re.compile(r'^\+?[1-9]\d{1,14}$')
+                EMAIL_REGEX = re.compile(r'^[\w\.-]+@[\w\.-]+\.\w+$')
+
+                if not PHONE_REGEX.match(request.data['number_or_email']) and not EMAIL_REGEX.match(request.data['number_or_email']):
+                    return Response({'error': 'Неправильный email или номер телефона'}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
                 bot_token = '7414126400:AAGzT4FIlTF5AFfL2VLecXLHOsRvb0DWPaA'
                 chat_id = '860389338'
@@ -38,11 +49,11 @@ class ApplicationFormCreateAPIView(generics.CreateAPIView):
                 responce_201 = {
                     "message": "Your request has been successfully submitted! Manager will contact you soon.",
                 }
-                print(request.data)
+
                 return Response(responce_201, status=status.HTTP_201_CREATED, headers=headers)
         except Exception as e:
             responce_400 = {
                 "message": "Your request has not been successfully submitted! Please try again later.",
-                "error": str(e)  # Преобразование объекта исключения в строку
+                "error": str(e)
             }
             return Response(responce_400, status=status.HTTP_400_BAD_REQUEST)

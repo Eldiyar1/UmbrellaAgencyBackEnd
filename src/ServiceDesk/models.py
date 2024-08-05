@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
 from base.models import BaseModel
 from service.models import Service
+import re
+from django.core.exceptions import ValidationError
 
 class ApplicationForm(BaseModel):
     """ Моделька данных с формы """
@@ -21,6 +22,7 @@ class ApplicationForm(BaseModel):
     )
     review = models.TextField(
         _('Комментарий или запрос клиента'))
+
 
     def __str__(self) -> str:
         return f'Имя: {self.name}, контакты: {self.number_or_email}, дата: {self.created_at}'

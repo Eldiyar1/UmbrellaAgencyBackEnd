@@ -25,9 +25,6 @@ class Founder(BaseModel):
         blank=True,
         null=True
     )
-    url = models.URLField(
-        _('Ссылка на вакансию')
-    )
 
     def __str__(self):
         return (f'ФИО: {self.fullname}, '
@@ -46,6 +43,9 @@ class Vacancy(BaseModel):
     )
     description = models.TextField(
         _('Описание вакансии')
+    )
+    url = models.URLField(
+        _('Ссылка на вакансию')
     )
 
     def __str__(self) -> str:
