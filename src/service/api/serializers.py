@@ -66,6 +66,7 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'title',
+            'gif',
             'short_description_for_banner',
             'tabs'
         )

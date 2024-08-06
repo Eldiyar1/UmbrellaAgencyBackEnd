@@ -23,6 +23,11 @@ class Portfolio(BaseModel):
             )
         ]
     )
+    link = models.URLField(
+        _('Ссылка'),
+        max_length=200,
+        help_text=_('Ссылка на проект или ресурс.')
+    )
 
     def __str__(self):
         return f'Заголовок: {self.title}, прибыль: {self.price}, создано в: {self.created_at}'

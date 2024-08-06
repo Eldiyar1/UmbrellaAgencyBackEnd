@@ -14,6 +14,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
             'title',
             'price',
             'image',
+            'link',
             'created_at'
         )
         ref_name = 'portfolio'

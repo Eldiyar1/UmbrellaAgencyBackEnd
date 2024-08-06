@@ -12,3 +12,9 @@ class ServiceListAPIView(generics.ListAPIView):
 class ServiceMainPageListAPIView(generics.ListAPIView):
     queryset = service_mod.Service.objects.all()
     serializer_class = service_serializer.ServiceMainPageSerializer
+
+
+class ServiceDetailAPIView(generics.RetrieveAPIView):
+    queryset = service_mod.Service.objects.all()
+    serializer_class = service_serializer.ServiceSerializer
+    lookup_field = 'id'
