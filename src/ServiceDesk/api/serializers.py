@@ -37,4 +37,4 @@ class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Contact
-        serializer_class = '__all__'
+        fields = ['number', 'email', 'address']
