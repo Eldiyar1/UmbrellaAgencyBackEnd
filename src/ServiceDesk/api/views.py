@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import ApplicationFormSerializer
-from ServiceDesk.models import ApplicationForm
+from .serializers import ApplicationFormSerializer, ContactSerializer
+from ServiceDesk.models import ApplicationForm, Contact
 from .custom_decorator import limit_rate
 
 
@@ -57,3 +57,8 @@ class ApplicationFormCreateAPIView(generics.CreateAPIView):
                 "error": str(e)
             }
             return Response(responce_400, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ContactAPIView(generics.ListAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer

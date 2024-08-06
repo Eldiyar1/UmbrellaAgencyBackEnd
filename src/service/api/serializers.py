@@ -87,4 +87,4 @@ class ServiceMainPageSerializer(serializers.ModelSerializer):
         return obj.title
 
     def get_category(self, obj):
-        return [tab.title for tab in obj.tabs.all()]
+        return [{'id': tab.id, 'title': tab.title} for tab in obj.tabs.all()]

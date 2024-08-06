@@ -30,3 +30,17 @@ class ApplicationForm(BaseModel):
     class Meta:
         verbose_name = _('Данные с формы')
         verbose_name_plural = verbose_name
+
+
+class Contact(models.Model):
+    number = models.CharField(
+        _('Номер телефона'),
+        max_length=14
+    )
+    email = models.EmailField(
+        _('Почта')
+    )
+    address = models.CharField(
+        _('Адрес'),
+        max_length=250
+    )

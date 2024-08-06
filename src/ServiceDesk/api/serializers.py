@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ServiceDesk.models import ApplicationForm
+from ServiceDesk.models import ApplicationForm, Contact
 from service.models import Service
 
 class ApplicationFormSerializer(serializers.ModelSerializer):
@@ -31,3 +31,10 @@ class ApplicationFormSerializer(serializers.ModelSerializer):
         application_form.service.set(services)
 
         return application_form
+
+
+class ContactSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contact
+        serializer_class = '__all__'
