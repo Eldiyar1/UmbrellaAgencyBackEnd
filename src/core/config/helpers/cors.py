@@ -24,7 +24,7 @@ CORS_ALLOW_HEADERS = [
 
 CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS', cast=csv())
 
-CORS_TRUSTED_ORIGINS = ['http://localhost:3000',]
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000',]
 
 CORS_ALLOW_CREDENTIALS = True
 
