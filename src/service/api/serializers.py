@@ -66,5 +66,25 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'title',
+            'short_description_for_banner',
             'tabs'
         )
+
+
+class ServiceMainPageSerializer(serializers.ModelSerializer):
+    title = serializers.SerializerMethodField('get_title')
+    category = serializers.SerializerMethodField('get_category')
+
+    class Meta:
+        model = service_mod.Service
+        fields = (
+            'id',
+            'title',
+            'category'
+        )
+
+    def get_title(self, obj):
+        return obj.title
+
+    def get_category(self, obj):
+        return [tab.title for tab in obj.tabs.all()]

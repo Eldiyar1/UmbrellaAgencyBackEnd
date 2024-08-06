@@ -105,6 +105,11 @@ class Service(BaseModel):
         _('Заголовок'),
         max_length=120
     )
+    short_description_for_banner = models.CharField(
+        _('Краткое описание для баннера главной страницы'),
+        help_text=_('Макс. символов: 90'),
+        max_length=90,
+    )
     tabs = models.ManyToManyField(
         Tab,
         related_name='service_tabs',

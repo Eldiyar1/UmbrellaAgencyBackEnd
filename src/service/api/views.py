@@ -9,3 +9,6 @@ class ServiceListAPIView(generics.ListAPIView):
     serializer_class = service_serializer.ServiceSerializer
 
 
+class ServiceMainPageListAPIView(generics.ListAPIView):
+    queryset = service_mod.Service.objects.all()
+    serializer_class = service_serializer.ServiceMainPageSerializer
