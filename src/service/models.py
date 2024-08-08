@@ -23,6 +23,10 @@ class Section(BaseModel):
 
 
 class Process(BaseModel):
+    title = models.CharField(
+        max_length=255,
+        verbose_name=_('Название процесса')
+    )
     description = models.TextField(
         _('Описание процесса')
     )
@@ -67,6 +71,23 @@ class TeamMember(BaseModel):
         verbose_name_plural = _('Члены команды')
 
 
+class Step(BaseModel):
+    title = models.CharField(
+        max_length=255,
+        verbose_name=_('Название шага')
+    )
+    description = models.TextField(
+        verbose_name=_('Описание шага')
+    )
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('Шаг')
+        verbose_name_plural = _('Шаги')
+
+
 class Tab(BaseModel):
     title = models.CharField(
         _('Заголовок'),
@@ -85,7 +106,14 @@ class Tab(BaseModel):
     portfolios = models.ManyToManyField(
         Portfolio,
         related_name='tab_portfolios',
-        verbose_name=_('Портфолио')
+        verbose_name=_('Портфолио'),
+        blank=True,
+        null=True
+    )
+    steps = models.ManyToManyField(
+        Step,
+        related_name='tab_steps',
+        verbose_name=_('Шаги')
     )
     team = models.ManyToManyField(
         TeamMember,

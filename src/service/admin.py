@@ -1,5 +1,5 @@
 from django.contrib import admin as django_admin
-from .models import Section as SectionModel
+from .models import Section as SectionModel, Step
 from .models import Process as ProcessModel
 from .models import Portfolio as PortfolioModel
 from .models import TeamMember as TeamMemberModel
@@ -47,3 +47,4 @@ django_admin.site.register(PortfolioModel, PortfolioAdmin)
 django_admin.site.register(TeamMemberModel, TeamMemberAdmin)
 django_admin.site.register(TabModel, TabAdmin)
 django_admin.site.register(ServiceModel, ServiceAdmin)
+django_admin.site.register(Step)

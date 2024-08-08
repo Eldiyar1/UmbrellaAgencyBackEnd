@@ -17,6 +17,7 @@ class ProcessSerializer(serializers.ModelSerializer):
         model = service_mod.Process
         fields = (
             'id',
+            'title',
             'description'
         )
 
@@ -40,11 +41,22 @@ class TeamMemberSerializer(serializers.ModelSerializer):
         )
 
 
+class StepSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = service_mod.Step
+        fields = (
+            'id',
+            'title',
+            'description'
+        )
+
+
 class TabSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True)
     processes = ProcessSerializer(many=True)
     portfolios = PortfolioSerializer(many=True)
     team = TeamMemberSerializer(many=True)
+    steps = StepSerializer(many=True)
 
     class Meta:
         model = service_mod.Tab
@@ -54,7 +66,8 @@ class TabSerializer(serializers.ModelSerializer):
             'sections',
             'processes',
             'portfolios',
-            'team'
+            'team',
+            'steps'
         )
 
 
